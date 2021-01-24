@@ -4,7 +4,7 @@
 
 KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to KDWorker, and KDWorker will build the web worker script, add it to the DOM and run the web worker, and revoke the DOMString when finished.
 
-[Fork on CodeSandbox](https://codesandbox.io/s/kdworker-901ut?file=/README.md)
+[Fork on CodeSandbox](https://codesandbox.io/s/kdworker-58h4c?file=/src/index.js)
 
 ## Basic Example
 
