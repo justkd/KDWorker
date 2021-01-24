@@ -1,5 +1,5 @@
 /**
- * @file /src/module/KDWorker.ts
+ * @file /src/module/dev/KDWorker.ts
  * @version 1.1.0
  * @author Cadence Holmes
  * @copyright Cadence Holmes 2020
