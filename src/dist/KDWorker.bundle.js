@@ -26,7 +26,7 @@
  */
 const KDWorker = (fn) => {
   /**
-   * KDWorker returns an async function which in turn returns a promise that resolves on worker completion.
+   * `KDWorker` returns an async function which in turn returns a promise that resolves on worker completion.
    * @param params - This should be the parameters that would be passed to the web worker function.
    */
   return async (params) => {
@@ -50,10 +50,8 @@ const KDWorker = (fn) => {
           });
         };
         const res = parseClone(e.data.fn)(e.data.params);
-        /* eslint-disable-next-line no-restricted-globals */ self.postMessage(
-          res,
-          null
-        );
+        /* eslint-disable-next-line no-restricted-globals */
+        self.postMessage(res, null);
       };
     };
     const makeWebWorker = (() => {
