@@ -99,9 +99,11 @@ const namespace = 'kd';
   /**
    * AMD / Require module
    * @example
+   * ```
    *  require(["dist/KDWorker.bundle.js"], function(KDWorker) {
    *    console.log( KDWorker );
    *  });
+   * ```
    */
   if (amdRequire) {
     root['define'](['exports'], declareExports);
@@ -111,8 +113,10 @@ const namespace = 'kd';
   /**
    * CommonJS / ES / Node module
    * @example
+   * ```
    *  import { KDWorker } from "./dist/KDWorker.bundle.js";
    *  console.log( KDWorker );
+   * ```
    */
   if (esm) {
     exports !== null && declareExports(exports);
@@ -122,11 +126,13 @@ const namespace = 'kd';
   /**
    * Non-module / CDN
    * @example
+   * ```
    *  <script src="dist/KDWorker.bundle.js"></script>
    *  <script>
    *    const KDWorker = window.kd.KDWorker;
    *    console.log( KDWorker );
    *  </script>
+   * ```
    */
   if (nonmodule) {
     declareExports((root[namespace] = root[namespace] || {}));
