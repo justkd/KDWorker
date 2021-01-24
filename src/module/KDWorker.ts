@@ -5,8 +5,8 @@
  * @copyright Cadence Holmes 2020
  * @license MIT
  * @fileoverview
- * KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to
- * KDWorker, and KDWorker will build the web worker script, add it to the DOM and run the web worker,
+ * `KDWorker` creates web workers on the fly. Simply pass the web worker function and its parameter to
+ * `KDWorker`, and it will build the web worker script, add it to the DOM and run the web worker,
  * and revoke the DOMString when finished.
  */
 
@@ -14,8 +14,8 @@ type GenericFunc<T extends any[], R = any> = (...args: T) => R | void;
 type UnknownFunc = GenericFunc<unknown[], unknown>;
 
 /**
- * KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to
- * KDWorker, and KDWorker will build the web worker script, add it to the DOM and run the web worker,
+ * `KDWorker` creates web workers on the fly. Simply pass the web worker function and its parameter to
+ * `KDWorker`, and it will build the web worker script, add it to the DOM and run the web worker,
  * and revoke the DOMString when finished.
  * @param fn - This should be a web worker friendly function intended to be run on the web worker.
  * @example
@@ -29,7 +29,7 @@ type UnknownFunc = GenericFunc<unknown[], unknown>;
  */
 export const KDWorker = (fn: UnknownFunc) => {
   /**
-   * KDWorker returns an async function which in turn returns a promise that resolves on worker completion.
+   * `KDWorker` returns an async function which in turn returns a promise that resolves on worker completion.
    * @param params - This should be the parameters that would be passed to the web worker function.
    */
   return async (params?: any) => {
