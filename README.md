@@ -6,6 +6,38 @@
 
 [Fork on CodeSandbox](https://codesandbox.io/s/kdworker-58h4c?file=/src/index.js)
 
+## Install
+
+`src/dist/KDChain.bundle.js` can be added to your project in multiple ways:
+
+```
+// CommonJS / ES / Node module
+// add to your module file
+
+import { KDWorker } from "KDWorker.bundle.js";
+console.log( KDWorker );
+```
+
+```
+// AMD / Require module
+// add to your module file
+
+require(["KDWorker.bundle.js"], function(KDWorker) {
+  console.log( KDWorker );
+});
+```
+
+```
+// Non-module / CDN
+// add to your html file
+
+<script src="KDWorker.bundle.js"></script>
+<script>
+  const KDWorker = window.kd.KDWorker;
+  console.log( KDWorker );
+</script>
+```
+
 ## Basic Example
 
 ```
