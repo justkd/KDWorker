@@ -138,7 +138,7 @@ export const App = (): React.ReactElement => {
       <React.Fragment>
         <div className={classes.description}>
           <code>KDWorker</code> creates web workers on the fly. Simply pass the
-          web worker function and its parameter to <code>KDWorker</code>, and it
+          web worker function and its parameter to <code>KDWorker</code> and it
           will build the web worker script, add it to the DOM, run the web
           worker, and finally revoke the DOMString when finished.
         </div>
