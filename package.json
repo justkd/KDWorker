@@ -1,7 +1,7 @@
 {
   "name": "kdworker",
   "version": "1.1.0",
-  "description": "KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to KDWorker, and it will build the web worker script, add it to the DOM and run the web worker, and revoke the DOMString when finished.",
+  "description": "KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to KDWorker and it will build the web worker script, add it to the DOM, run the web worker, and finally revoke the DOMString when finished.",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
