@@ -222,7 +222,12 @@ export const App = (): React.ReactElement => {
               <React.Fragment key={index}>
                 <List>
                   {list.map((item) => (
-                    <ListItem component='a' key={item.title} href={item.href}>
+                    <ListItem
+                      component='a'
+                      button
+                      key={item.title}
+                      href={item.href}
+                    >
                       <ListItemText primary={item.title} />
                     </ListItem>
                   ))}
