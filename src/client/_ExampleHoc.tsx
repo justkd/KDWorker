@@ -62,6 +62,15 @@ const useStyles = makeStyles((theme: Theme) => {
     },
     title: {
       flexGrow: 1,
+      [theme.breakpoints.up('xs')]: {
+        marginRight: theme.spacing(5),
+      },
+    },
+    description: {
+      width: '65%',
+      [theme.breakpoints.down('xs')]: {
+        width: '100%',
+      },
     },
     inputContainer: {
       display: 'flex',
@@ -137,11 +146,13 @@ export const ExampleHoc = ({
           {title}
         </Typography>
         {description && (
-          <Typography variant={'body2'}>{description}</Typography>
+          <Typography className={classes.description} variant={'body2'}>
+            {description}
+          </Typography>
         )}
       </React.Fragment>
     );
-  }, [classes.title, title, description]);
+  }, [classes.title, classes.description, title, description]);
 
   const CodeExample = React.useMemo(() => {
     return <pre className={classes.code}>{codeExample}</pre>;
@@ -165,7 +176,7 @@ export const ExampleHoc = ({
     );
   }, [classes.code, classes.accordion, moreExamples, moreExamplesTitle]);
 
-  const AppContent = React.useMemo(() => {
+  const Content = React.useMemo(() => {
     return (
       <React.Fragment>
         {codeExample && CodeExample}
@@ -195,12 +206,12 @@ export const ExampleHoc = ({
         {mediaQueryXs ? (
           <div className={classes.header}>
             {Header}
-            {AppContent}
+            {Content}
           </div>
         ) : (
           <div className={classes.headerContainer}>
             <div className={classes.header}>{Header}</div>
-            {AppContent}
+            {Content}
           </div>
         )}
       </Paper>
