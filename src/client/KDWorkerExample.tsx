@@ -16,7 +16,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 
 import { animate } from './util/animate';
-import { KDWorker } from '../dist/KDWorker.bundle.js';
+import { KDWorker } from '../module/KDWorker';
 
 const TableCell = withStyles({
   root: {

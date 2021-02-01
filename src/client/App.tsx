@@ -44,14 +44,14 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
     },
     appBar: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
       },
     },
     menuButton: {
       backgroundColor: 'white',
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         display: 'none',
       },
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '90%',
       maxWidth: 800,
       minWidth: 320,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         maxWidth: 500,
       },
     },
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: theme.spacing(5),
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         width: drawerWidth,
         flexShrink: 0,
       },
@@ -238,7 +238,7 @@ export const App = (): React.ReactElement => {
     return (
       <nav className={classes.drawer} aria-label='mailbox folders'>
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation='css'>
+        <Hidden mdUp implementation='css'>
           <Drawer
             variant='temporary'
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -254,7 +254,7 @@ export const App = (): React.ReactElement => {
             {drawerContent()}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation='css'>
+        <Hidden smDown implementation='css'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,

@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme: Theme) => {
       fontSize: 20,
     },
     paper: {
+      width: '100%',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -30,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => {
       marginTop: theme.spacing(5),
       marginBottom: theme.spacing(5),
       padding: theme.spacing(2),
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         margin: theme.spacing(2),
       },
     },
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => {
       alignItems: 'center',
       justifyContent: 'space-between',
       width: '100%',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         flexDirection: 'column',
         alignItems: 'center',
       },
@@ -62,13 +63,13 @@ const useStyles = makeStyles((theme: Theme) => {
     },
     title: {
       flexGrow: 1,
-      [theme.breakpoints.up('xs')]: {
+      [theme.breakpoints.up('sm')]: {
         marginRight: theme.spacing(5),
       },
     },
     description: {
       width: '65%',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         width: '100%',
       },
     },
@@ -80,14 +81,14 @@ const useStyles = makeStyles((theme: Theme) => {
       flexGrow: 0,
       marginTop: 10,
       marginBottom: 10,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         width: '100%',
       },
     },
     extraInputs: {
       flexGrow: 1,
       marginLeft: 50,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         flexGrow: 0,
         marginLeft: 0,
       },
@@ -137,7 +138,7 @@ export const ExampleHoc = ({
 }): React.ReactElement => {
   const classes = useStyles();
   const theme = useTheme();
-  const mediaQueryXs = useMediaQuery(theme.breakpoints.down('xs'));
+  const mediaQuerySm = useMediaQuery(theme.breakpoints.down('sm'));
 
   const Header = React.useMemo(() => {
     return (
@@ -203,7 +204,7 @@ export const ExampleHoc = ({
   return (
     <div id={id} className={classes.root}>
       <Paper className={classes.paper} elevation={3}>
-        {mediaQueryXs ? (
+        {mediaQuerySm ? (
           <div className={classes.header}>
             {Header}
             {Content}
