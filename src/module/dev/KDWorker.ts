@@ -41,22 +41,21 @@ export const KDWorker = (fn: UnknownFunc) => {
     if (!isFn(fn)) return fn;
 
     const work = () => {
+      const parseClone = (str: string) => {
+        return JSON.parse(str, function (_, fnstr: string) {
+          if (typeof fnstr !== 'string') return fnstr;
+          if (fnstr.length < 8) return fnstr;
+
+          const prefix = fnstr.substring(0, 8);
+          /* eslint-disable-next-line no-eval */
+          if (prefix === 'function') return eval('(' + fnstr + ')');
+          /* eslint-disable-next-line no-eval */
+          if (prefix === 'arrowfun') return eval(fnstr.slice(8));
+
+          return fnstr;
+        });
+      };
       onmessage = function (e) {
-        const parseClone = (str: string) => {
-          return JSON.parse(str, function (_, fnstr: string) {
-            if (typeof fnstr !== 'string') return fnstr;
-            if (fnstr.length < 8) return fnstr;
-
-            const prefix = fnstr.substring(0, 8);
-            /* eslint-disable-next-line no-eval */
-            if (prefix === 'function') return eval('(' + fnstr + ')');
-            /* eslint-disable-next-line no-eval */
-            if (prefix === 'arrowfun') return eval(fnstr.slice(8));
-
-            return fnstr;
-          });
-        };
-
         const res = parseClone(e.data.fn)(e.data.params);
         postMessage(res, null);
       };
