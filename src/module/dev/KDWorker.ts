@@ -51,15 +51,14 @@ export const KDWorker = (fn: UnknownFunc) => {
             /* eslint-disable-next-line no-eval */
             if (prefix === 'function') return eval('(' + fnstr + ')');
             /* eslint-disable-next-line no-eval */
-            if (prefix === 'arrowfn') return eval(fnstr.slice(8));
+            if (prefix === 'arrowfun') return eval(fnstr.slice(8));
 
             return fnstr;
           });
         };
 
         const res = parseClone(e.data.fn)(e.data.params);
-        /* eslint-disable-next-line no-restricted-globals */
-        self.postMessage(res, null);
+        postMessage(res, null);
       };
     };
 
@@ -79,7 +78,9 @@ export const KDWorker = (fn: UnknownFunc) => {
       return JSON.stringify(obj, function (_, fn) {
         if (!isFn(fn)) return fn;
         const fnstr = fn.toString();
-        return fnstr.substring(0, 8) !== 'function' ? `arrowfn${fnstr}` : fnstr;
+        return fnstr.substring(0, 8) !== 'function'
+          ? `arrowfun${fnstr}`
+          : fnstr;
       });
     };
 

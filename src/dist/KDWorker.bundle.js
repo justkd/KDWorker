@@ -42,16 +42,15 @@ const KDWorker = (fn) => {
             if (typeof fnstr !== 'string') return fnstr;
             if (fnstr.length < 8) return fnstr;
             const prefix = fnstr.substring(0, 8);
-            /* eslint-disable-next-line no-eval */ if (prefix === 'function')
-              return eval('(' + fnstr + ')');
-            /* eslint-disable-next-line no-eval */ if (prefix === 'arrowfn')
-              return eval(fnstr.slice(8));
+            /* eslint-disable-next-line no-eval */
+            if (prefix === 'function') return eval('(' + fnstr + ')');
+            /* eslint-disable-next-line no-eval */
+            if (prefix === 'arrowfun') return eval(fnstr.slice(8));
             return fnstr;
           });
         };
         const res = parseClone(e.data.fn)(e.data.params);
-        /* eslint-disable-next-line no-restricted-globals */
-        self.postMessage(res, null);
+        postMessage(res, null);
       };
     };
     const makeWebWorker = (() => {
@@ -68,7 +67,9 @@ const KDWorker = (fn) => {
       return JSON.stringify(obj, function (_, fn) {
         if (!isFn(fn)) return fn;
         const fnstr = fn.toString();
-        return fnstr.substring(0, 8) !== 'function' ? `arrowfn${fnstr}` : fnstr;
+        return fnstr.substring(0, 8) !== 'function'
+          ? `arrowfun${fnstr}`
+          : fnstr;
       });
     };
     w.postMessage({ fn: cloneFn(fn), params: params });
