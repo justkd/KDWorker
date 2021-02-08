@@ -14,6 +14,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import MuiTableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 import { animate } from './util/animate';
 import { KDWorker } from '../module/KDWorker';
@@ -45,6 +46,7 @@ export const KDWorkerExample = (): React.ReactElement => {
   const classes = useStyles();
 
   const [output, setOutput] = React.useState('ready');
+  const [working, setWorking] = React.useState(false);
 
   const text = React.useMemo(() => {
     return {
@@ -88,17 +90,23 @@ export const KDWorkerExample = (): React.ReactElement => {
             <TableRow>
               <TableCell align='center'>{output}</TableCell>
             </TableRow>
+            {working && (
+              <TableRow>
+                <LinearProgress />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
         <Typography variant={'caption'}>{footnote}</Typography>
       </TableContainer>
     );
-  }, [output]);
+  }, [output, working]);
 
   const Controls = React.useMemo(() => {
     const LeftButton = () => {
       const onclick = () => {
         setOutput('working for about 6 seconds...');
+        setWorking(true);
 
         KDWorker((x) => {
           /**
@@ -133,7 +141,8 @@ export const KDWorkerExample = (): React.ReactElement => {
           return `worker done after ${Date.now() - start}ms`;
         })(50)
           .then((results) => {
-            setOutput(results);
+            setOutput(results as string);
+            setWorking(false);
           })
           .catch(console.log);
       };
