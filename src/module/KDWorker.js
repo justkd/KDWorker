@@ -1,18 +1,18 @@
 /**
  * @file /src/module/KDWorker.js
- * @version 1.1.0
+ * @version 1.1.1
  * @author Cadence Holmes
- * @copyright Cadence Holmes 2020
+ * @copyright Cadence Holmes 2022
  * @license MIT
  * @fileoverview
- * `KDWorker` creates web workers on the fly. Simply pass the web worker function and its parameter to
- * `KDWorker`, and it will build the web worker script, add it to the DOM and run the web worker,
+ * KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to
+ * KDWorker, and KDWorker will build the web worker script, add it to the DOM and run the web worker,
  * and revoke the DOMString when finished.
  */
 
 /**
- * `KDWorker` creates web workers on the fly. Simply pass the web worker function and its parameter to
- * `KDWorker`, and it will build the web worker script, add it to the DOM and run the web worker,
+ * KDWorker creates web workers on the fly. Simply pass the web worker function and its parameter to
+ * KDWorker, and KDWorker will build the web worker script, add it to the DOM and run the web worker,
  * and revoke the DOMString when finished.
  * @param fn - This should be a web worker friendly function intended to be run on the web worker.
  * @example
@@ -26,7 +26,7 @@
  */
 export const KDWorker = (fn) => {
   /**
-   * `KDWorker` returns an async function which in turn returns a promise that resolves on worker completion.
+   * KDWorker returns an async function which in turn returns a promise that resolves on worker completion.
    * @param params - This should be the parameters that would be passed to the web worker function.
    */
   return async (params) => {
@@ -49,7 +49,8 @@ export const KDWorker = (fn) => {
         });
       };
       onmessage = function (e) {
-        const res = parseClone(e.data.fn)(e.data.params);
+        const _params = parseClone(e.data.params);
+        const res = parseClone(e.data.fn)(_params);
         postMessage(res, null);
       };
     };
@@ -74,7 +75,7 @@ export const KDWorker = (fn) => {
     };
     w.postMessage({
       fn: cloneFn(fn),
-      params: params,
+      params: cloneFn(params),
     });
     return await new Promise((resolve, reject) => {
       w.onmessage = (e) => resolve(e.data);

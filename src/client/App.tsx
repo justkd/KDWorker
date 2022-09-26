@@ -135,14 +135,33 @@ export const App = (): React.ReactElement => {
 
   const Description = React.useMemo(() => {
     return (
-      <React.Fragment>
+      <>
         <div className={classes.description}>
           <code>KDWorker</code> creates web workers on the fly. Simply pass the
           web worker function and its parameter to <code>KDWorker</code> and it
           will build the web worker script, add it to the DOM, run the web
           worker, and finally revoke the DOMString when finished.
         </div>
-      </React.Fragment>
+        <div className={classes.description}>
+          <ul>
+            <li>
+              The worker function is unable to clone an object with values that
+              are not primitive data types. This means the payload OR return
+              value can not include an object or array with values that are also
+              objects or arrays. The payload <b>can</b> be a function or object
+              with primitive values. Work arounds are being explored.
+            </li>
+            <br />
+            <li>
+              <code>console</code> and <code>window</code>
+              globals are not available in the body of the worker function. The
+              worker lives outside of the DOM and must be provided those objects
+              directly. But, as mentioned above, you won't be able to do that
+              until a recursive cloning and parsing function is implemented.
+            </li>
+          </ul>
+        </div>
+      </>
     );
   }, [classes.description]);
 

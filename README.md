@@ -1,14 +1,29 @@
 # KDWorker
 
-##### v 1.1.0 | © justKD 2020 | MIT License
+##### v 1.1.1 | © justKD 2022 | MIT License
 
 `KDWorker` creates web workers on the fly. Simply pass the web worker function and its parameter to `KDWorker`, and it will build the web worker script, add it to the DOM and run the web worker, and revoke the DOMString when finished.
 
+Note:
+
+- The worker function is unable to clone an object with values that are not primitive data types. This means the payload OR return value can not include an object or array with values that are also objects or arrays. The payload _can_ be a function or object with primitive values. Work arounds are being explored.
+- `console` and `window` globals are not available in the body of the worker function. The worker lives outside of the DOM and must be provided those objects directly. But, as mentioned above, you won't be able to do that until a recursive cloning and parsing function is implemented.
+
+TODO:
+
+- Work around or resolve issues above.
+- Export module with types.
+- Migrate to NPM.
+
 [Demo](https://kdworkerdemo.justkd.app/)
+
+TODO
+
+- export with types
 
 ## Install
 
-`src/dist/KDChain.bundle.js` can be added to your project in multiple ways:
+`src/dist/KDWorker.bundle.js` can be added to your project in multiple ways:
 
 ```
 // CommonJS / ES / Node module
